@@ -1,0 +1,46 @@
+resource "aws_instance" "ec2-01" {
+  instance_type = "t2.micro"
+  ami           = "ami-053b0d53c279acc90"
+
+  tags = {
+    name = "musec2"
+  }
+}
+
+output "instant-state_ec2-01" {
+  value = aws_instance.ec2-01.instance_state
+}
+
+output "public-ip_ec2-01" {
+ value = aws_instance.ec2-01.public_ip
+}
+
+
+
+
+resource "aws_instance" "ec2-02" {
+  instance_type = "t2.micro"
+  ami           = "ami-053b0d53c279acc90"
+
+  tags = {
+    name = "musec2-02"
+  }
+}
+
+output "instant-state_ec2-02" {
+  value = aws_instance.ec2-02.instance_state
+}
+
+output "public-dns_ec2-02" {
+ value = aws_instance.ec2-02.public_dns
+}
+
+
+resource "aws_s3_bucket" "example" {
+  bucket = "musbayyi22"
+
+  tags = {
+    Name        = "My22023bucket"
+    Environment = "Dev"
+  }
+}
