@@ -1,0 +1,13 @@
+variable "instance-list" {
+  default = ["dev", "test", "stage", "pre-prod", "prod"]
+}
+
+
+resource "aws_instance" "foreach" {
+  for_each = toset(var.instance-list)
+  instance_type = "t2.micro"
+  ami           = "ami-053b0d53c279acc90"
+  tags = {
+    Name = each.value
+  }
+}
