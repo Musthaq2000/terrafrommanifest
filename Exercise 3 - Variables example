@@ -1,0 +1,23 @@
+variable "instance-type" {
+  default = "t2.micro"
+}
+variable "ami-id" {
+  default = "ami-053b0d53c279acc90"
+}
+locals {
+  tagname = "mytag"
+}
+resource "aws_instance" "first-ec2" {
+  instance_type = var.instance-type
+  ami           = var.ami-id
+  tags = {
+    Name = local.tagname
+  }
+}
+resource "aws_instance" "second-ec2" {
+  instance_type = var.instance-type
+  ami           = var.ami-id
+  tags = {
+    Name = local.tagname
+  }
+}
