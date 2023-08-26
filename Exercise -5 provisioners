@@ -1,0 +1,10 @@
+resource "aws_instance" "local-prov" {
+  instance_type = "t2.micro"
+  ami           = "ami-053b0d53c279acc90"
+  tags = {
+    Name = "sg-instance"
+  }
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip} >> myinstances"
+  }
+}
